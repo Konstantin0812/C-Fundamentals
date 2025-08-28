@@ -1,13 +1,40 @@
-﻿namespace Student_Information_2._0
+﻿namespace _02._The_Lift
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            string studentName = Console.ReadLine();
-            int age = int.Parse(Console.ReadLine());
-            double averageGrade = double.Parse(Console.ReadLine());
-            Console.WriteLine($"Name: {studentName}, Age: {age}, Grade: {averageGrade:F2}");
+            int peopleWaiting = int.Parse(Console.ReadLine());
+
+            int[] lift = Console.ReadLine()
+                .Split()
+                .Select(int.Parse)
+                .ToArray();
+
+            int maxPeoplePerwagon = 4;
+
+            for (int i = 0; i < lift.Length; i++)
+            {
+                int currentPeoplePerWagon = lift[i];
+                for (int j = currentPeoplePerWagon; j < maxPeoplePerwagon; j++)
+                {
+                    lift[i]++;
+                    peopleWaiting--;
+
+                    if (peopleWaiting == 0)
+                    {
+                        if (lift.Sum() < lift.Length * maxPeoplePerwagon)
+                        {
+                            Console.WriteLine("The lift has empty spots!");
+                        }
+                        Console.WriteLine(string.Join(" ", lift));
+
+                        return;
+                    }
+                }
+            }
+            Console.WriteLine($"There isn't enough space! {peopleWaiting} people in a queue!");
+            Console.WriteLine(string.Join(' ', lift));
         }
     }
 }
