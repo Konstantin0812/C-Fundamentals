@@ -1,40 +1,25 @@
-﻿namespace _02._The_Lift
+﻿
+int numberOflocation = int.Parse(Console.ReadLine());
+
+
+for(int i =1; i <= numberOflocation; i++)
 {
-    internal class Program
+    double averigedobiv = double.Parse(Console.ReadLine());
+    int numberOfdays = int.Parse(Console.ReadLine());
+    double totalGold = 0;
+    for (int j  = 1; j <= numberOfdays; j++)
     {
-        static void Main(string[] args)
-        {
-            int peopleWaiting = int.Parse(Console.ReadLine());
-
-            int[] lift = Console.ReadLine()
-                .Split()
-                .Select(int.Parse)
-                .ToArray();
-
-            int maxPeoplePerwagon = 4;
-
-            for (int i = 0; i < lift.Length; i++)
-            {
-                int currentPeoplePerWagon = lift[i];
-                for (int j = currentPeoplePerWagon; j < maxPeoplePerwagon; j++)
-                {
-                    lift[i]++;
-                    peopleWaiting--;
-
-                    if (peopleWaiting == 0)
-                    {
-                        if (lift.Sum() < lift.Length * maxPeoplePerwagon)
-                        {
-                            Console.WriteLine("The lift has empty spots!");
-                        }
-                        Console.WriteLine(string.Join(" ", lift));
-
-                        return;
-                    }
-                }
-            }
-            Console.WriteLine($"There isn't enough space! {peopleWaiting} people in a queue!");
-            Console.WriteLine(string.Join(' ', lift));
-        }
+        double currentGold = double.Parse(Console.ReadLine());
+        totalGold += currentGold;
+    }
+    double averigeGold = totalGold / numberOfdays;
+    
+    if(averigeGold >= averigedobiv)
+    {
+        Console.WriteLine($"Good job! Average gold per day: {averigeGold:f2}.");
+    }
+    else if(averigeGold < averigedobiv)
+    {
+        Console.WriteLine($"You need {averigedobiv - averigeGold:f2} gold.");
     }
 }
