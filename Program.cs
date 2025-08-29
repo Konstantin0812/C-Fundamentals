@@ -1,25 +1,33 @@
 ﻿
-int numberOflocation = int.Parse(Console.ReadLine());
+int requiredHeight = int.Parse(Console.ReadLine());
 
+int failedAttemps = 0;
+int totalJumps = 0;
+int currentHeight = requiredHeight - 30;
 
-for(int i =1; i <= numberOflocation; i++)
+while (true)
 {
-    double averigedobiv = double.Parse(Console.ReadLine());
-    int numberOfdays = int.Parse(Console.ReadLine());
-    double totalGold = 0;
-    for (int j  = 1; j <= numberOfdays; j++)
+    int madeJump = int.Parse(Console.ReadLine());
+    totalJumps++;
+
+    if(madeJump > currentHeight)
     {
-        double currentGold = double.Parse(Console.ReadLine());
-        totalGold += currentGold;
+        if(currentHeight >= requiredHeight)
+        {
+            Console.WriteLine($"Tihomir succeeded, he jumped over {currentHeight}cm after {totalJumps} jumps.");
+            break;
+        }
+        currentHeight += 5;
+           failedAttemps = 0;
     }
-    double averigeGold = totalGold / numberOfdays;
-    
-    if(averigeGold >= averigedobiv)
+    else
     {
-        Console.WriteLine($"Good job! Average gold per day: {averigeGold:f2}.");
-    }
-    else if(averigeGold < averigedobiv)
-    {
-        Console.WriteLine($"You need {averigedobiv - averigeGold:f2} gold.");
+        failedAttemps++;
+        if(failedAttemps == 3)
+        {
+            Console.WriteLine($"Tihomir failed at {currentHeight}cm after {totalJumps} jumps.");
+            break;
+        }
     }
 }
+
