@@ -1,33 +1,27 @@
-﻿
-int requiredHeight = int.Parse(Console.ReadLine());
+﻿int totalSteps = 0;
 
-int failedAttemps = 0;
-int totalJumps = 0;
-int currentHeight = requiredHeight - 30;
-
-while (true)
+string input = Console.ReadLine();
+while (input != "Going home")
 {
-    int madeJump = int.Parse(Console.ReadLine());
-    totalJumps++;
-
-    if(madeJump > currentHeight)
+    int steps = int.Parse(input);
+    totalSteps += steps;
+    if(totalSteps >= 10000)
     {
-        if(currentHeight >= requiredHeight)
-        {
-            Console.WriteLine($"Tihomir succeeded, he jumped over {currentHeight}cm after {totalJumps} jumps.");
-            break;
-        }
-        currentHeight += 5;
-           failedAttemps = 0;
+        break;
     }
-    else
-    {
-        failedAttemps++;
-        if(failedAttemps == 3)
-        {
-            Console.WriteLine($"Tihomir failed at {currentHeight}cm after {totalJumps} jumps.");
-            break;
-        }
-    }
+  input = Console.ReadLine();
 }
-
+if(totalSteps < 10000)
+{
+    int stepsFromTheParkToHome = int.Parse(Console.ReadLine());
+    totalSteps += stepsFromTheParkToHome;
+}
+if (totalSteps >= 10000)
+{
+    Console.WriteLine($"Goal reached! Good job!");
+    Console.WriteLine($"{totalSteps - 10000} steps over the goal!");
+}
+else
+{
+    Console.WriteLine($"{10000 - totalSteps} more steps to reach goal.");
+}
