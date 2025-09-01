@@ -1,19 +1,29 @@
-﻿int n = int.Parse(Console.ReadLine());
-int presentationsCount = 0;
-double totalSumOfGrades = 0;
-string command;
-while ((command = Console.ReadLine()) != "Finish")
-{
-    string presentationName = command;
-    presentationsCount++;
-    double sumOfGrade = 0;
-    for(int i = 0; i < n; i++)
-    { 
-        double grade = double.Parse(Console.ReadLine());
-        sumOfGrade += grade;
-        totalSumOfGrades += grade;
-    }
-    Console.WriteLine($"{presentationName} - {sumOfGrade / n:f2}. ");
+﻿
+int kupenaXrana =( int.Parse(Console.ReadLine()))*1000;
 
+int currentFood = 0;
+int totalFood = 0;
+int diff = 0;
+
+string input = Console.ReadLine();
+while (input != "Adopted")
+{
+    currentFood = int.Parse(input);
+    totalFood += currentFood;
+
+
+    
+    
+
+    input = Console.ReadLine();
 }
-Console.WriteLine($"Student's final assessment is {totalSumOfGrades / (presentationsCount * n):f2}. ");
+if (totalFood > kupenaXrana)
+{
+    Console.WriteLine($"Food is not enough. You need {totalFood - kupenaXrana} grams more.");
+    
+}
+// Console.WriteLine($"Food is enough! Leftovers: {diff} grams.");
+else if (totalFood <= kupenaXrana)
+{
+    Console.WriteLine($"Food is enough! Leftovers: {kupenaXrana- totalFood} grams.");
+}
