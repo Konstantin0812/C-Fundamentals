@@ -1,18 +1,19 @@
-﻿string destination = Console.ReadLine();
-
-while (destination != "End")
+﻿int n = int.Parse(Console.ReadLine());
+int presentationsCount = 0;
+double totalSumOfGrades = 0;
+string command;
+while ((command = Console.ReadLine()) != "Finish")
 {
-    double moneyForTrip = double.Parse(Console.ReadLine());
-
-    double savedMoney = 0;
-    while (savedMoney < moneyForTrip)
-    {
-        double currentMoney = double.Parse(Console.ReadLine());
-        savedMoney += currentMoney;
+    string presentationName = command;
+    presentationsCount++;
+    double sumOfGrade = 0;
+    for(int i = 0; i < n; i++)
+    { 
+        double grade = double.Parse(Console.ReadLine());
+        sumOfGrade += grade;
+        totalSumOfGrades += grade;
     }
+    Console.WriteLine($"{presentationName} - {sumOfGrade / n:f2}. ");
 
-    Console.WriteLine($"Going to {destination}!");
-
-    destination = Console.ReadLine();
-    
 }
+Console.WriteLine($"Student's final assessment is {totalSumOfGrades / (presentationsCount * n):f2}. ");
