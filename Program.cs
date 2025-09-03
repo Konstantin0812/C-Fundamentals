@@ -1,29 +1,27 @@
-﻿
-int kupenaXrana =( int.Parse(Console.ReadLine()))*1000;
-
-int currentFood = 0;
-int totalFood = 0;
-int diff = 0;
+﻿int totalSteps = 0;
 
 string input = Console.ReadLine();
-while (input != "Adopted")
+while (input != "Going home")
 {
-    currentFood = int.Parse(input);
-    totalFood += currentFood;
-
-
-    
-    
-
-    input = Console.ReadLine();
+    int steps = int.Parse(input);
+    totalSteps += steps;
+    if(totalSteps >= 10000)
+    {
+        break;
+    }
+  input = Console.ReadLine();
 }
-if (totalFood > kupenaXrana)
+if(totalSteps < 10000)
 {
-    Console.WriteLine($"Food is not enough. You need {totalFood - kupenaXrana} grams more.");
-    
+    int stepsFromTheParkToHome = int.Parse(Console.ReadLine());
+    totalSteps += stepsFromTheParkToHome;
 }
-// Console.WriteLine($"Food is enough! Leftovers: {diff} grams.");
-else if (totalFood <= kupenaXrana)
+if (totalSteps >= 10000)
 {
-    Console.WriteLine($"Food is enough! Leftovers: {kupenaXrana- totalFood} grams.");
+    Console.WriteLine($"Goal reached! Good job!");
+    Console.WriteLine($"{totalSteps - 10000} steps over the goal!");
+}
+else
+{
+    Console.WriteLine($"{10000 - totalSteps} more steps to reach goal.");
 }
